@@ -39,9 +39,9 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       ...tsEslint.configs['recommended-type-checked'].rules,
-      //...tsEslint.configs['strict-type-checked'].rules,
       ...tsEslint.configs['stylistic-type-checked'].rules,
-      ...prettier.configs.recommended.rules
+      ...prettier.configs.recommended.rules,
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type']
     },
     settings: {
       react: {

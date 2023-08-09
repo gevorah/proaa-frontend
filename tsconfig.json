@@ -22,12 +22,14 @@
 
     "baseUrl": "./",
     "paths": {
-      "@public/*": ["public/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
       "@models/*": ["src/models/*"],
+      "@routes/*": ["src/routes/*"],
       "@pages/*": ["src/pages/*"],
+      "@services/*": ["src/services/*"],
+      "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
