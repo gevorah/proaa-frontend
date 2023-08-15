@@ -10,7 +10,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint",
-    "lint:fix": "eslint --fix'",
+    "lint:fix": "eslint --fix",
     "prettier": "prettier --write 'src/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
