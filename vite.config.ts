@@ -16,6 +16,12 @@ export default {
       }
     }
   ],
+  test: {
+    include: ['src/**/*.test.{ts,tsx}'],
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test-setup.ts']
+  },
   resolve: {
     alias: {
       // This Rollup aliases are extracted from @esbuild-plugins/node-modules-polyfill,

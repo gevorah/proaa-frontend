@@ -11,7 +11,7 @@ function Home() {
   }, [])
   return (
     <PublicTemplate>
-      <section className="flex flex-col gap-6 mx-3 my-6 px-9">
+      <section className="mx-3 my-6 flex flex-col gap-6 px-9">
         <h1 className="text-3xl font-semibold">Top ten topics</h1>
         <table>
           <thead>

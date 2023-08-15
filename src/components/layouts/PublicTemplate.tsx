@@ -7,7 +7,7 @@ function BaseTemplate({ children }: Props) {
   return (
     <>
       <Navbar>
-        <div className="flex items-center justify-end w-full gap-6 h-full mx-6">
+        <div className="mx-6 flex h-full w-full items-center justify-end gap-6">
           <a href="#login">Log In</a>
           <a href="#signup">Sign Up</a>
         </div>

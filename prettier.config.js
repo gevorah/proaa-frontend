@@ -6,5 +6,7 @@ export default {
   semi: false,
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: 'none'
+  trailingComma: 'none',
+
+  plugins: ['prettier-plugin-tailwindcss']
 }

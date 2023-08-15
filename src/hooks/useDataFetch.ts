@@ -18,7 +18,9 @@ const useDataFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
       try {
         const res = await fetcher()
         setData(res)
+        logger.info('Fulfilled data fetch')
       } catch (error) {
+        logger.info('Rejected data fetch')
         errorHandler(error)
         setError(error)
       } finally {
@@ -26,7 +28,7 @@ const useDataFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
       }
     }
 
-    logger.info('data fetch hook')
+    logger.info('Running data fetch hook')
     void fetchData()
   }, [fetcher])
 
