@@ -2,6 +2,7 @@ name: Tests
 on:
   push:
     branches:
+      - feature:006
       - develop
   pull_request:
     branches:
