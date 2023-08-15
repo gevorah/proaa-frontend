@@ -5,7 +5,7 @@ import { logger } from '@utils/logger'
 import { useEffect } from 'react'
 
 function Home() {
-  const { data: topics } = useDataFetch(top10Topics)
+  const { data: topics, isLoading } = useDataFetch(top10Topics)
   useEffect(() => {
     logger.info('Running home page')
   }, [])
@@ -21,12 +21,19 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            {topics?.map(({ id, name, resources }) => (
-              <tr key={id}>
-                <td>{name}</td>
-                <td>{resources}</td>
+            {isLoading ? (
+              <tr>
+                <th></th>
+                <th></th>
               </tr>
-            ))}
+            ) : (
+              topics?.map(({ id, name, resources }) => (
+                <tr key={id}>
+                  <td>{name}</td>
+                  <td>{resources}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </section>
