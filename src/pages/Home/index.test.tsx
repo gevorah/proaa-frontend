@@ -26,8 +26,8 @@ const data = [
 ]
 
 const mockFetch = async (
-  input: URL | RequestInfo,
-  init?: RequestInit | undefined
+  _input: URL | RequestInfo,
+  _init?: RequestInit | undefined
 ) => {
   const res = {
     ok: true,

@@ -3,8 +3,8 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import 'setimmediate'
 
+/** @type {import('vite').UserConfig} */
 export default {
   plugins: [
     react(),

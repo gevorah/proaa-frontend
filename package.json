@@ -10,7 +10,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint",
-    "lint:fix": "eslint --fix'",
+    "lint:fix": "eslint --fix",
     "prettier": "prettier --write 'src/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "@vitest/coverage-v8": "^0.34.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^9.0.0",
