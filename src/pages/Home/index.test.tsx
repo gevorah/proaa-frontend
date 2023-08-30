@@ -10,7 +10,7 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-test('should render the home page', async () => {
+it('should render the home page', async () => {
   const component = render(<Home />)
   expect(component.getByText('Top ten topics')).toBeTruthy()
   expect(component.getByRole('table')).toBeTruthy()
