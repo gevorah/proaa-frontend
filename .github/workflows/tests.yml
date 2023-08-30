@@ -2,11 +2,8 @@ name: Tests
 on:
   push:
     branches:
-      - feature/009
-      - develop
+      - 'feature/**'
   pull_request:
-    branches:
-      - main
 jobs:
   test-workflow:
     runs-on: ubuntu-latest

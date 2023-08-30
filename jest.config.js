@@ -1,4 +1,6 @@
+/** @type {import('jest').Config} */
 export default {
+  testEnvironment: 'jsdom',
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {

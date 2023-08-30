@@ -23,7 +23,7 @@
     "winston-transport": "^4.5.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.6",

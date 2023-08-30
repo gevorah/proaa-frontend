@@ -23,8 +23,8 @@ function Home() {
           <tbody>
             {isLoading ? (
               <tr>
-                <th></th>
-                <th></th>
+                <td></td>
+                <td></td>
               </tr>
             ) : (
               topics?.map(({ id, name, resources }) => (
