@@ -3,15 +3,15 @@ import { logger } from '@utils/logger'
 import { useEffect, useState } from 'react'
 
 type Response<T> = {
-  data?: T
-  isLoading?: boolean
-  error?: unknown
+  data: T | null
+  isLoading: boolean
+  error: unknown
 }
 
-const useDataFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
-  const [data, setData] = useState<T>(null!)
+const useFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
+  const [data, setData] = useState<T | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<unknown>(null!)
+  const [error, setError] = useState<unknown>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,4 +35,4 @@ const useDataFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
   return { data, isLoading, error }
 }
 
-export default useDataFetch
+export default useFetch

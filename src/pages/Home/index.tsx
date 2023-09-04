@@ -1,11 +1,11 @@
 import PublicTemplate from '@components/layouts/PublicTemplate'
-import useDataFetch from '@hooks/useDataFetch'
+import useFetch from '@hooks/useFetch'
 import { top10Topics } from '@services/TopicService'
 import { logger } from '@utils/logger'
 import { useEffect } from 'react'
 
 function Home() {
-  const { data: topics, isLoading } = useDataFetch(top10Topics)
+  const { data: topics, isLoading } = useFetch(top10Topics)
   useEffect(() => {
     logger.info('Running home page')
   }, [])
@@ -16,15 +16,18 @@ function Home() {
         <table>
           <thead>
             <tr>
-              <th>Topic</th>
-              <th>Resources</th>
+              <th scope="col">Topic</th>
+              <th scope="col">Resources</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
               <tr>
-                <td></td>
-                <td></td>
+                <td colSpan={2}>Loading...</td>
+              </tr>
+            ) : topics?.length === 0 ? (
+              <tr>
+                <td colSpan={2}>No Topics</td>
               </tr>
             ) : (
               topics?.map(({ id, name, resources }) => (
