@@ -1,10 +1,8 @@
-import { TopicsTop } from '@models/Topic'
-import fetcher from '@utils/fetcher'
-
-const url = import.meta.env.VITE_API_BASE_URL as string
+import { TopicsTop } from '@/models/Topic'
+import fetcher from '@/utils/fetcher'
 
 const top10Topics = async () => {
-  const topics = await fetcher<TopicsTop>(url + '/topics/top-ten')
+  const topics = await fetcher<TopicsTop>('/topics/top-ten')
   return topics
 }
 

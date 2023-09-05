@@ -1,13 +1,13 @@
 import { ReactElement } from 'react'
 import Navbar from './Navbar'
 
-type Props = { children: ReactElement }
+type TemplateProps = { children: ReactElement }
 
-function BaseTemplate({ children }: Props) {
+function BaseTemplate({ children }: TemplateProps) {
   return (
     <>
       <Navbar>
-        <div className="mx-6 flex h-full w-full items-center justify-end gap-6">
+        <div className="nav-menu">
           <a href="#login">Log In</a>
           <a href="#signup">Sign Up</a>
         </div>

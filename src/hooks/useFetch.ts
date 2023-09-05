@@ -1,5 +1,5 @@
-import errorHandler from '@utils/errorHandler'
-import { logger } from '@utils/logger'
+import errorHandler from '@/utils/errorHandler'
+import { logger } from '@/utils/logger'
 import { useEffect, useState } from 'react'
 
 type Response<T> = {

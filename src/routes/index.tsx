@@ -1,5 +1,5 @@
-import Home from '@pages/Home'
-import Maintenance from '@pages/Maintenance'
+import Home from '@/pages/Home'
+import Maintenance from '@/pages/Maintenance'
 import { createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter([
