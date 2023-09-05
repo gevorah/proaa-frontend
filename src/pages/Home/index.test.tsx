@@ -13,7 +13,7 @@ afterEach(() => {
 it('should render the home page', async () => {
   const component = render(<Home />)
   expect(component.getByText('Top ten topics')).toBeTruthy()
-  expect(component.getByRole('table')).toBeTruthy()
+  expect(await component.findByRole('table')).toBeTruthy()
   expect(await component.findByText('Object Oriented Programming')).toBeTruthy()
 })
 
