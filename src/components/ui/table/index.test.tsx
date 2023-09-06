@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import Table from './'
 import { topTen } from '@/test-setup'
 
-describe('Top Ten Table', () => {
+describe('Table Component', () => {
   const headers = [
     { key: 'name', header: 'Topic' },
     { key: 'resources', header: 'Resource' }
