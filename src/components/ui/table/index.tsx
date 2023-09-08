@@ -15,14 +15,20 @@ type TableProps<T> = {
 }
 
 function Table<T>(props: TableProps<T>) {
-  const { columns, data, isLoading, emptyMessage = 'No data' } = props
+  const {
+    columns,
+    data,
+    isLoading,
+    emptyMessage = 'No data',
+    className
+  } = props
 
   if (isLoading) return <Loading />
 
   if (!data.length) return <div>{emptyMessage}</div>
 
   return (
-    <table>
+    <table className={className}>
       <thead>
         <tr>
           {columns.map((column, index) => (
