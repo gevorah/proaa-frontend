@@ -1,3 +1,4 @@
+import './index.scss'
 import { ReactElement } from 'react'
 
 type LoadingProps = {

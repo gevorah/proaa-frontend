@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  thead > tr {
+    @apply bg-gray-300;
+  }
+  tbody > tr:nth-child(even) {
+    @apply bg-gray-300;
+  }
+  td,
+  th {
+    width: 50%;
+    border-width: 1px;
+    border-style: solid;
+    @apply border-gray-600;
+    text-align: left;
+    padding-block: 0.5rem;
+    padding-inline: 0.75rem;
+  }
+}
