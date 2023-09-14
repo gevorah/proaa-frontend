@@ -8,10 +8,14 @@ body {
   height: 100%;
 }
 
+main {
+  @apply bg-gray-50;
+}
+
 section {
-  @apply mx-3 my-6 flex flex-col gap-6 px-9;
+  @apply mx-auto flex flex-col;
 }
 
 h1 {
-  @apply text-3xl font-semibold;
+  @apply font-bold leading-snug tracking-tight;
 }

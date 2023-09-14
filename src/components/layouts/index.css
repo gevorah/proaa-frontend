@@ -1,0 +1,11 @@
+.nav-wrapper {
+  @apply sticky top-0 z-50 bg-gray-200;
+}
+
+.nav {
+  @apply relative flex h-12 px-1.5 lg:px-3;
+}
+
+.nav-menu {
+  @apply mx-6 flex h-full w-full items-center justify-end gap-x-6;
+}

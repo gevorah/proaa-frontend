@@ -1,4 +1,4 @@
-import './index.scss'
+import './index.css'
 import Loading from '@/components/ui/loading'
 
 type Column = {

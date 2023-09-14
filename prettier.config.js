@@ -8,5 +8,11 @@ export default {
   tabWidth: 2,
   trailingComma: 'none',
 
-  plugins: ['prettier-plugin-tailwindcss']
+  plugins: [
+    '@trivago/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss'
+  ],
+  importOrder: ['^@/(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true
 }

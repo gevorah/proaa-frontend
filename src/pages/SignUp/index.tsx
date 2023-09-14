@@ -1,0 +1,90 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+import PublicTemplate from '@/components/layouts/PublicTemplate'
+import Alert from '@/components/ui/alert'
+import Button from '@/components/ui/button'
+import FormTextField from '@/components/ui/form/textfield'
+import { HttpError } from '@/models/HttpError'
+import { signUp } from '@/services/AuthService'
+
+import './index.css'
+
+const schema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
+  password: z
+    .string()
+    .min(1, 'Password is required')
+    .min(8, 'Password must have more than 8 characters')
+})
+
+type SignUpSchema = z.infer<typeof schema>
+
+function SignUp() {
+  const [error, setError] = useState<HttpError | null>(null)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<SignUpSchema>({ resolver: zodResolver(schema) })
+
+  const onSubmit = handleSubmit(async data => {
+    signUp(data).catch(e => setError(e))
+  })
+
+  return (
+    <PublicTemplate>
+      <section>
+        <div className="my-12">
+          <div className="box">
+            <div className="sign-up">
+              {error && <Alert variant="error" description={error.message} />}
+              <h1 className="text-xl">Sign up with your email address</h1>
+              <form className="form" onSubmit={e => e.preventDefault()}>
+                <FormTextField<SignUpSchema>
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  autocomplete="name"
+                  register={register}
+                  error={errors.name}
+                />
+                <FormTextField<SignUpSchema>
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  autocomplete="email"
+                  register={register}
+                  error={errors.email}
+                />
+                <FormTextField<SignUpSchema>
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  register={register}
+                  error={errors.password}
+                />
+                <Button disabled={isSubmitting} onClick={onSubmit}>
+                  Sign Up
+                </Button>
+                <span>
+                  Already have an account?&nbsp;
+                  <a href="/signin" className="text-blue-600 underline">
+                    Log in
+                  </a>
+                </span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PublicTemplate>
+  )
+}
+
+export default SignUp
+export type { SignUpSchema }

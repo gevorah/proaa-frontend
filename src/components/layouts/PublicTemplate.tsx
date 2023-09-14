@@ -1,16 +1,16 @@
-import './index.scss'
+import './index.css'
 import { ReactElement } from 'react'
 import Navbar from './Navbar'
 
 type TemplateProps = { children: ReactElement }
 
-function BaseTemplate({ children }: TemplateProps) {
+function PublicTemplate({ children }: TemplateProps) {
   return (
     <>
       <Navbar>
         <div className="nav-menu">
           <a href="#login">Log In</a>
-          <a href="#signup">Sign Up</a>
+          <a href="/signup">Sign Up</a>
         </div>
       </Navbar>
       <div>
@@ -20,4 +20,4 @@ function BaseTemplate({ children }: TemplateProps) {
   )
 }
 
-export default BaseTemplate
+export default PublicTemplate

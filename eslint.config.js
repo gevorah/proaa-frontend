@@ -1,10 +1,10 @@
+import tsEslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import jest from 'eslint-plugin-jest'
+import prettier from 'eslint-plugin-prettier'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import tsEslint from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
-import prettier from 'eslint-plugin-prettier'
-import jest from 'eslint-plugin-jest'
 import vitest from 'eslint-plugin-vitest'
 import globals from 'globals'
 
@@ -47,7 +47,9 @@ export default [
       ...prettier.configs.recommended.rules,
       ...vitest.configs.recommended.rules,
       ...jest.configs.recommended.rules,
-      '@typescript-eslint/consistent-type-definitions': ['error', 'type']
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'error'
     },
     settings: {
       react: {

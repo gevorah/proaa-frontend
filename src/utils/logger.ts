@@ -1,6 +1,6 @@
+import { TransformableInfo } from 'logform'
 import { createLogger } from 'winston'
 import TransportStream from 'winston-transport'
-import { TransformableInfo } from 'logform'
 
 type LogLevel = 'error' | 'warn' | 'info' | 'debug'
 class BrowserConsole extends TransportStream {

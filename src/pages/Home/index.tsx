@@ -1,9 +1,10 @@
+import { useEffect } from 'react'
+
 import PublicTemplate from '@/components/layouts/PublicTemplate'
 import TopTenTable from '@/components/ui/table'
-import useFetch from '@/hooks/useFetch'
+import { useFetch } from '@/hooks/useFetch'
 import { top10Topics } from '@/services/TopicService'
 import { logger } from '@/utils/logger'
-import { useEffect } from 'react'
 
 function Home() {
   const { data: topics, isLoading } = useFetch(top10Topics)
@@ -20,13 +21,15 @@ function Home() {
   return (
     <PublicTemplate>
       <section>
-        <h1>Top ten topics</h1>
-        <TopTenTable
-          columns={headers}
-          data={topics || []}
-          isLoading={isLoading}
-          emptyMessage="No Topics"
-        />
+        <div className="mx-auto my-12">
+          <h1 className="mb-6 text-3xl">Top ten topics</h1>
+          <TopTenTable
+            columns={headers}
+            data={topics || []}
+            isLoading={isLoading}
+            emptyMessage="No Topics"
+          />
+        </div>
       </section>
     </PublicTemplate>
   )

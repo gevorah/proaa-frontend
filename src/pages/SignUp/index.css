@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .box {
+    @apply mx-auto flex w-full max-w-md flex-col rounded-lg bg-white shadow;
+  }
+  .sign-up {
+    @apply flex w-full flex-col gap-y-6 p-9;
+  }
+  .form {
+    @apply flex w-full flex-col gap-y-6;
+  }
+}
