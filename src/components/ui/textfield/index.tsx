@@ -1,5 +1,7 @@
+import clsx from 'clsx'
+import { ChangeEvent, forwardRef } from 'react'
+
 import './index.css'
-import { forwardRef, ChangeEvent } from 'react'
 
 type TextFieldProps = {
   name: string
@@ -35,7 +37,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
         disabled={disabled}
         onChange={onChange}
         autoComplete={autocomplete}
-        className={'textfield ' + className}
+        className={clsx('textfield', className)}
       />
     </div>
   )

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import PublicTemplate from '@/components/layouts/PublicTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
-import FormTextField from '@/components/ui/form/textfield'
+import TextField from '@/components/ui/form/textfield'
 import { HttpError } from '@/models/HttpError'
 import { signUp } from '@/services/AuthService'
 
@@ -23,6 +23,8 @@ const schema = z.object({
 
 type SignUpSchema = z.infer<typeof schema>
 
+const FormTextField = TextField<SignUpSchema>
+
 function SignUp() {
   const [error, setError] = useState<HttpError | null>(null)
 
@@ -32,7 +34,7 @@ function SignUp() {
     formState: { errors, isSubmitting }
   } = useForm<SignUpSchema>({ resolver: zodResolver(schema) })
 
-  const onSubmit = handleSubmit(async data => {
+  const onSubmit = handleSubmit(data => {
     signUp(data).catch(e => setError(e))
   })
 
@@ -45,7 +47,7 @@ function SignUp() {
               {error && <Alert variant="error" description={error.message} />}
               <h1 className="text-xl">Sign up with your email address</h1>
               <form className="form" onSubmit={e => e.preventDefault()}>
-                <FormTextField<SignUpSchema>
+                <FormTextField
                   name="name"
                   type="text"
                   placeholder="Name"
@@ -53,7 +55,7 @@ function SignUp() {
                   register={register}
                   error={errors.name}
                 />
-                <FormTextField<SignUpSchema>
+                <FormTextField
                   name="email"
                   type="email"
                   placeholder="Email"
@@ -61,7 +63,7 @@ function SignUp() {
                   register={register}
                   error={errors.email}
                 />
-                <FormTextField<SignUpSchema>
+                <FormTextField
                   name="password"
                   type="password"
                   placeholder="Password"
@@ -69,7 +71,7 @@ function SignUp() {
                   error={errors.password}
                 />
                 <Button disabled={isSubmitting} onClick={onSubmit}>
-                  Sign Up
+                  Sign up
                 </Button>
                 <span>
                   Already have an account?&nbsp;

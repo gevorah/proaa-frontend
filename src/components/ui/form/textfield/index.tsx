@@ -12,7 +12,7 @@ import type { TextFieldProps } from '@/components/ui/textfield'
 type FormInputProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>
   rules?: RegisterOptions
-  register?: UseFormRegister<TFormValues>
+  register: UseFormRegister<TFormValues>
   error?: FieldError
 } & Omit<TextFieldProps, 'name'>
 
@@ -23,11 +23,7 @@ function FormTextField<TFormValues extends FieldValues>(
 
   return (
     <div>
-      <TextField
-        name={name}
-        {...rest}
-        {...(register && register(name, rules))}
-      />
+      <TextField {...rest} {...register(name, rules)} />
       {error && <span className="text-red-600">{error.message}</span>}
     </div>
   )
