@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 import PublicTemplate from '@/components/layouts/PublicTemplate'
@@ -27,7 +26,6 @@ type SignUpSchema = z.infer<typeof schema>
 const FormTextField = TextField<SignUpSchema>
 
 function SignUp() {
-  const navigate = useNavigate()
   const [error, setError] = useState<HttpError | null>(null)
 
   const {
@@ -40,7 +38,6 @@ function SignUp() {
     signUp(data)
       .then(() => {
         setError(null)
-        navigate('/signin')
       })
       .catch(e => setError(e))
   })
