@@ -20,15 +20,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@models/*": ["src/models/*"],
-      "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

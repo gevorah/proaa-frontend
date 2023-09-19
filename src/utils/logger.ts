@@ -19,10 +19,8 @@ class BrowserConsole extends TransportStream {
   constructor(options: TransportStream.TransportStreamOptions) {
     super(options)
 
-    this.level =
-      options?.level && this.levels.hasOwnProperty(options.level)
-        ? options.level
-        : 'info'
+    const isLevel = options.level && this.levels.hasOwnProperty(options.level)
+    this.level = isLevel ? options.level : 'info'
   }
   log(info: TransformableInfo, next: () => void) {
     setImmediate((): void => {

@@ -1,7 +1,7 @@
-import { logger } from '@utils/logger'
+import { logger } from '@/utils/logger'
 
-function App() {
-  logger.info('Running app')
+function Maintenance() {
+  logger.info('Running...')
   return (
     <div className="m-6">
       <span className="text-xl">
@@ -11,4 +11,4 @@ function App() {
   )
 }
 
-export default App
+export default Maintenance
