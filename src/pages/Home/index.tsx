@@ -6,6 +6,8 @@ import { useFetch } from '@/hooks/useFetch'
 import { top10Topics } from '@/services/TopicService'
 import { logger } from '@/utils/logger'
 
+import './index.css'
+
 function Home() {
   const { data: topics, isLoading } = useFetch(top10Topics)
 
@@ -21,15 +23,13 @@ function Home() {
   return (
     <PublicTemplate>
       <section>
-        <div className="mx-auto my-12">
-          <h1 className="mb-6 text-3xl">Top ten topics</h1>
-          <TopTenTable
-            columns={headers}
-            data={topics || []}
-            isLoading={isLoading}
-            emptyMessage="No Topics"
-          />
-        </div>
+        <h1 className="home-title">Top ten topics</h1>
+        <TopTenTable
+          columns={headers}
+          data={topics || []}
+          isLoading={isLoading}
+          emptyMessage="No Topics"
+        />
       </section>
     </PublicTemplate>
   )

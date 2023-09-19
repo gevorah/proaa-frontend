@@ -1,5 +1,6 @@
-import './index.css'
 import Loading from '@/components/ui/loading'
+
+import './index.css'
 
 type Column = {
   key: string

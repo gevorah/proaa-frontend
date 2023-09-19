@@ -2,20 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  width: 100%;
-  height: 100%;
+@layer base {
+  html,
+  body, 
+  #root {
+    width: 100%;
+    height: 100%;
+  }
+  
+  main {
+    @apply bg-gray-50;
+    height: calc(100vh - 3rem);
+  }
+  
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  h1, h2, h3 {
+    line-height: 1.375;
+    letter-spacing: -0.025em;
+  }
+  h1 {
+    font-weight: 700;
+  }
+  h2 {
+    font-weight: 500;
+  }
+  h3 {
+    font-weight: 300;
+  }
 }
 
-main {
-  @apply bg-gray-50;
-}
-
-section {
-  @apply mx-auto flex flex-col;
-}
-
-h1 {
-  @apply font-bold leading-snug tracking-tight;
+@layer utilities {
+  .link {
+    @apply text-blue-600;
+    text-decoration-line: underline;
+  }
 }

@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 import PublicTemplate from '@/components/layouts/PublicTemplate'
@@ -26,6 +27,7 @@ type SignUpSchema = z.infer<typeof schema>
 const FormTextField = TextField<SignUpSchema>
 
 function SignUp() {
+  const navigate = useNavigate()
   const [error, setError] = useState<HttpError | null>(null)
 
   const {
@@ -35,53 +37,54 @@ function SignUp() {
   } = useForm<SignUpSchema>({ resolver: zodResolver(schema) })
 
   const onSubmit = handleSubmit(data => {
-    signUp(data).catch(e => setError(e))
+    signUp(data)
+      .then(() => {
+        setError(null)
+        navigate('/signin')
+      })
+      .catch(e => setError(e))
   })
 
   return (
     <PublicTemplate>
       <section>
-        <div className="my-12">
-          <div className="box">
-            <div className="sign-up">
-              {error && <Alert variant="error" description={error.message} />}
-              <h1 className="text-xl">Sign up with your email address</h1>
-              <form className="form" onSubmit={e => e.preventDefault()}>
-                <FormTextField
-                  name="name"
-                  type="text"
-                  placeholder="Name"
-                  autocomplete="name"
-                  register={register}
-                  error={errors.name}
-                />
-                <FormTextField
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  autocomplete="email"
-                  register={register}
-                  error={errors.email}
-                />
-                <FormTextField
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  register={register}
-                  error={errors.password}
-                />
-                <Button disabled={isSubmitting} onClick={onSubmit}>
-                  Sign up
-                </Button>
-                <span>
-                  Already have an account?&nbsp;
-                  <a href="/signin" className="text-blue-600 underline">
-                    Log in
-                  </a>
-                </span>
-              </form>
-            </div>
-          </div>
+        <div className="sign-up">
+          {error && <Alert variant="error" description={error.message} />}
+          <h1>Sign up with your email address</h1>
+          <form className="form" onSubmit={e => e.preventDefault()}>
+            <FormTextField
+              name="name"
+              type="text"
+              placeholder="Name"
+              autocomplete="name"
+              register={register}
+              error={errors.name}
+            />
+            <FormTextField
+              name="email"
+              type="email"
+              placeholder="Email"
+              autocomplete="email"
+              register={register}
+              error={errors.email}
+            />
+            <FormTextField
+              name="password"
+              type="password"
+              placeholder="Password"
+              register={register}
+              error={errors.password}
+            />
+            <Button disabled={isSubmitting} onClick={onSubmit}>
+              Sign up
+            </Button>
+            <span>
+              Already have an account?&nbsp;
+              <a href="/signin" className="link">
+                Log in
+              </a>
+            </span>
+          </form>
         </div>
       </section>
     </PublicTemplate>

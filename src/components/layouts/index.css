@@ -1,11 +1,33 @@
-.nav-wrapper {
-  @apply sticky top-0 z-50 bg-gray-200;
-}
+@tailwind components;
 
-.nav {
-  @apply relative flex h-12 px-1.5 lg:px-3;
-}
-
-.nav-menu {
-  @apply mx-6 flex h-full w-full items-center justify-end gap-x-6;
+@layer components {
+  .nav-wrapper {
+    @apply bg-gray-200;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .nav {
+    position: relative;
+    height: 3rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  @media (min-width: 1024px) {
+    .nav {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  .nav-menu {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 1.5rem;
+  }
+  
 }

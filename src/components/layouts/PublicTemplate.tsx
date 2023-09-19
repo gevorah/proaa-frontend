@@ -1,6 +1,7 @@
-import './index.css'
 import { ReactElement } from 'react'
+
 import Navbar from './Navbar'
+import './index.css'
 
 type TemplateProps = { children: ReactElement }
 
@@ -9,7 +10,7 @@ function PublicTemplate({ children }: TemplateProps) {
     <>
       <Navbar>
         <div className="nav-menu">
-          <a href="#login">Log In</a>
+          <a href="/signin">Log In</a>
           <a href="/signup">Sign Up</a>
         </div>
       </Navbar>
