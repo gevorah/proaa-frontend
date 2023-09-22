@@ -1,12 +1,12 @@
 import { logger } from '@/utils/logger'
 
+import './index.css'
+
 function Maintenance() {
   logger.info('Running...')
   return (
-    <div className="m-6">
-      <span className="text-xl">
-        Training Library is currently down for maintenance.
-      </span>
+    <div className="maintenance">
+      <h1>Training Library is currently down for maintenance.</h1>
     </div>
   )
 }

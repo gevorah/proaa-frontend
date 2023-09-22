@@ -1,0 +1,9 @@
+@tailwind components;
+
+@layer components {
+  .home-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+}

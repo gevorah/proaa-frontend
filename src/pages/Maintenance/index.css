@@ -1,0 +1,10 @@
+@tailwind components;
+
+@layer components {
+  .maintenance {
+    margin: 1.5rem;
+  }
+  .maintenance h1 {
+    font-size: 1.25rem;
+  }
+}

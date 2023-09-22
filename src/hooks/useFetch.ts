@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import errorHandler from '@/utils/errorHandler'
 import { logger } from '@/utils/logger'
-import { useEffect, useState } from 'react'
 
 type Response<T> = {
   data: T | null
@@ -35,4 +36,4 @@ const useFetch = <T>(fetcher: () => Promise<T>): Response<T> => {
   return { data, isLoading, error }
 }
 
-export default useFetch
+export { useFetch }
