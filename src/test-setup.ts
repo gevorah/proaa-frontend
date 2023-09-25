@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { vi } from 'vitest'
+import { vi, vitest } from 'vitest'
 
 export const topTen = [
   {
@@ -27,6 +27,10 @@ const mockFetch = async (
       return {} as Response
   }
 }
+
+vitest.mock('react-router-dom', () => ({
+  useNavigate: vitest.fn()
+}))
 
 beforeEach(() => {
   const fetchSpy = vi.spyOn(global, 'fetch')

@@ -9,22 +9,18 @@ import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
 import TextField from '@/components/ui/form/textfield'
 import { HttpError } from '@/models/HttpError'
-import { signUp } from '@/services/AuthService'
+import { signIn } from '@/services/AuthService'
 
 const schema = z.object({
-  name: z.string().min(1, 'Name is required'),
   email: z.string().min(1, 'Email is required').email('Invalid email'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must have more than 8 characters')
+  password: z.string().min(1, 'Password is required')
 })
 
-type SignUpSchema = z.infer<typeof schema>
+type SignInSchema = z.infer<typeof schema>
 
-const FormTextField = TextField<SignUpSchema>
+const FormTextField = TextField<SignInSchema>
 
-function SignUp() {
+function SignIn() {
   const navigate = useNavigate()
   const [error, setError] = useState<HttpError | null>(null)
 
@@ -32,13 +28,13 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<SignUpSchema>({ resolver: zodResolver(schema) })
+  } = useForm<SignInSchema>({ resolver: zodResolver(schema) })
 
   const onSubmit = handleSubmit(data => {
-    signUp(data)
+    signIn(data)
       .then(() => {
         setError(null)
-        navigate('/signin')
+        navigate('/')
       })
       .catch(e => setError(e))
   })
@@ -46,16 +42,8 @@ function SignUp() {
   return (
     <AuthTemplate>
       {error && <Alert variant="error" description={error.message} />}
-      <h1>Sign up with your email address</h1>
-      <form onSubmit={e => e.preventDefault()}>
-        <FormTextField
-          name="name"
-          type="text"
-          placeholder="Name"
-          autocomplete="name"
-          register={register}
-          error={errors.name}
-        />
+      <h1>Log in with your email address</h1>
+      <form className="form" onSubmit={e => e.preventDefault()}>
         <FormTextField
           name="email"
           type="email"
@@ -72,12 +60,12 @@ function SignUp() {
           error={errors.password}
         />
         <Button disabled={isSubmitting} onClick={onSubmit}>
-          Sign up
+          Sign in
         </Button>
         <span>
-          Already have an account?&nbsp;
-          <a href="/signin" className="link">
-            Log in
+          Don't have an account?&nbsp;
+          <a href="/signup" className="link">
+            Sign Up
           </a>
         </span>
       </form>
@@ -85,5 +73,5 @@ function SignUp() {
   )
 }
 
-export default SignUp
-export type { SignUpSchema }
+export default SignIn
+export type { SignInSchema }
