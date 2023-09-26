@@ -4,8 +4,9 @@ import Home from '@/pages/Home'
 import Maintenance from '@/pages/Maintenance'
 import SignIn from '@/pages/SignIn'
 import SignUp from '@/pages/SignUp'
+import Topics from '@/pages/Topics'
 
-import { homePath, signInPath, signUpPath } from './paths'
+import { homePath, signInPath, signUpPath, topicsPath } from './paths'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,8 @@ const router = createBrowserRouter([
     children: [
       { path: homePath, element: <Home /> },
       { path: signUpPath, element: <SignUp /> },
-      { path: signInPath, element: <SignIn /> }
+      { path: signInPath, element: <SignIn /> },
+      { path: topicsPath, element: <Topics /> }
     ]
   }
 ])

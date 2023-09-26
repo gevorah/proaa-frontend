@@ -1,11 +1,13 @@
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 
-type NavbarProps = { children: ReactElement }
+type NavbarProps = { children: ReactNode }
 
 function Navbar({ children }: NavbarProps) {
   return (
     <div className="nav-wrapper">
-      <nav className="nav">{children}</nav>
+      <nav className="nav">
+        <div className="nav-menu">{children}</div>
+      </nav>
     </div>
   )
 }
