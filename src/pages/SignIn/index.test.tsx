@@ -2,12 +2,12 @@ import { render } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { vi } from 'vitest'
 
-import { signUp } from '@/services/AuthService'
+import { signIn } from '@/services/AuthService'
 
-import SignUp from './'
+import SignIn from './'
 
 vi.mock('@/services/AuthService', () => ({
-  signUp: vi.fn(
+  signIn: vi.fn(
     () =>
       new Promise(() => {
         throw { message: 'Error' }
@@ -15,17 +15,17 @@ vi.mock('@/services/AuthService', () => ({
   )
 }))
 
-describe('Sign Up Page', () => {
-  it('should render the sign-up page', async () => {
-    const component = render(<SignUp />)
+describe('Sign In Page', () => {
+  it('should render the sign-in page', async () => {
+    const component = render(<SignIn />)
 
-    expect(component.getByText('Sign up')).toBeTruthy()
+    expect(component.getByText('Sign in')).toBeTruthy()
     expect(component.getByPlaceholderText('Email')).toBeTruthy()
     expect(component.getByPlaceholderText('Password')).toBeTruthy()
   })
 
   it('should show errors when the form is submitted without data', async () => {
-    const component = render(<SignUp />)
+    const component = render(<SignIn />)
 
     const button = component.getByRole('button')
     await userEvent.click(button)
@@ -35,10 +35,7 @@ describe('Sign Up Page', () => {
   })
 
   it('should show error when the service throws error', async () => {
-    const component = render(<SignUp />)
-
-    const nameField = component.getByPlaceholderText('Name')
-    await userEvent.type(nameField, 'pandorah')
+    const component = render(<SignIn />)
 
     const emailField = component.getByPlaceholderText('Email')
     await userEvent.type(emailField, 'pandorah@dark.com')
@@ -49,7 +46,7 @@ describe('Sign Up Page', () => {
     const button = component.getByRole('button')
     await userEvent.click(button)
 
-    expect(signUp).toBeCalled()
+    expect(signIn).toBeCalled()
     expect(await component.findByText('Error')).toBeTruthy()
   })
 })

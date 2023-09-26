@@ -1,7 +1,7 @@
-import path from 'path'
-import { polyfillNode } from 'esbuild-plugin-polyfill-node'
-import rollupPolyfillNode from 'rollup-plugin-polyfill-node'
 import react from '@vitejs/plugin-react'
+import { polyfillNode } from 'esbuild-plugin-polyfill-node'
+import path from 'path'
+import rollupPolyfillNode from 'rollup-plugin-polyfill-node'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 /** @type {import('vite').UserConfig} */

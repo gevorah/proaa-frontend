@@ -1,27 +1,4 @@
 @tailwind components;
 
 @layer components {
-  .sign-up {
-    @apply bg-white shadow;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 28rem;
-    border-radius: 0.5rem;
-    row-gap: 1.5rem;
-    padding: 2.25rem;
-  }
-
-  .sign-up h1 {
-    font-size: 1.25rem;
-  }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    row-gap: 1.5rem;
-  }
 }
