@@ -1,7 +1,7 @@
 import PrivateTemplate from '@/components/layouts/PrivateTemplate'
-import Button from '@/components/ui/button'
 import Table from '@/components/ui/table'
 import { useFetch } from '@/hooks/useFetch'
+import { newTopicPath } from '@/routes/paths'
 import { getTopics } from '@/services/TopicService'
 
 function Topics() {
@@ -22,7 +22,9 @@ function Topics() {
           isLoading={isLoading}
           emptyMessage="No Topics"
         />
-        <Button>New Topic</Button>
+        <a href={newTopicPath} className="btn">
+          New Topic
+        </a>
       </section>
     </PrivateTemplate>
   )
