@@ -22,6 +22,7 @@
     padding: 3rem 0;
     margin-left: auto;
     margin-right: auto;
+    row-gap: 1.375rem;
   }
   
   h1, h2, h3 {
@@ -43,5 +44,10 @@
   .link {
     @apply text-blue-600;
     text-decoration-line: underline;
+  }
+  
+  .title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }

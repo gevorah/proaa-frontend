@@ -10,6 +10,13 @@ export const topTen = [
   }
 ]
 
+export const topics = [
+  {
+    id: 1,
+    name: 'Object Oriented Programming'
+  }
+]
+
 const mockFetch = async (
   input: URL | RequestInfo,
   _init?: RequestInit | undefined
@@ -21,6 +28,12 @@ const mockFetch = async (
         ok: true,
         status: 200,
         json: async () => topTen
+      } as Response
+    case url + '/topics':
+      return {
+        ok: true,
+        status: 200,
+        json: async () => topics
       } as Response
 
     default:
