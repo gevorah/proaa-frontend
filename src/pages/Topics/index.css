@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+  .form-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+}
