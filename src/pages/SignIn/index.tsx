@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { FacebookLoginButton } from 'react-social-login-buttons'
@@ -65,7 +65,7 @@ function SignIn() {
           )
         }}
       >
-        <FacebookLoginButton />
+        <FacebookLoginButton style={{ margin: 0, width: '100%' }} />
       </LoginSocialFacebook>
       <h1>Log in with your email address</h1>
       <form className="form" onSubmit={e => e.preventDefault()}>

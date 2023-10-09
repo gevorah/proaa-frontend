@@ -69,7 +69,7 @@ function SignUp() {
           )
         }}
       >
-        <FacebookLoginButton />
+        <FacebookLoginButton style={{ margin: 0, width: '100%' }} />
       </LoginSocialFacebook>
       <h1>Sign up with your email address</h1>
       <form onSubmit={e => e.preventDefault()}>
