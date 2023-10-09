@@ -1,4 +1,4 @@
-import { Topics, TopicsTop } from '@/models/Topic'
+import { Topic, Topics, TopicsTop } from '@/models/Topic'
 import { authHeader } from '@/utils/authHeader'
 import fetcher from '@/utils/fetcher'
 import { topTenUrl, topicsUrl } from '@/utils/resources'
@@ -14,4 +14,14 @@ const getTopics = async () => {
   return topics
 }
 
-export { top10Topics, getTopics }
+const createTopic = async (t: Omit<Topic, 'id'>) => {
+  const headers = authHeader()
+  const topic = await fetcher<Topic>(topicsUrl, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(t)
+  })
+  return topic
+}
+
+export { top10Topics, getTopics, createTopic }
