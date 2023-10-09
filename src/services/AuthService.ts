@@ -1,8 +1,9 @@
-import type { User } from '@/models/User'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import type { AuthState, User } from '@/models/User'
 import { SignInSchema } from '@/pages/SignIn'
 import type { SignUpSchema } from '@/pages/SignUp'
 import fetcher from '@/utils/fetcher'
-import { signInUrl, signUpUrl } from '@/utils/resources'
+import { facebookLoginUrl, signInUrl, signUpUrl } from '@/utils/resources'
 
 const signUp = async (user: SignUpSchema) => {
   const res = await fetcher<User>(
@@ -17,6 +18,7 @@ const signUp = async (user: SignUpSchema) => {
 }
 
 const signIn = async (credentials: SignInSchema) => {
+  const { set } = useLocalStorage<AuthState>('auth')
   const res = await fetcher<{ token: string }>(
     signInUrl,
     {
@@ -25,8 +27,24 @@ const signIn = async (credentials: SignInSchema) => {
     },
     true
   )
-  localStorage.setItem('token', res.token)
+  set('state', { user: null, token: res.token, status: 'authenticated' })
   return res
 }
 
-export { signUp, signIn }
+const facebookLogin = async (token: string) => {
+  const { set } = useLocalStorage<AuthState>('auth')
+  const res = await fetcher<{ token: string }>(
+    facebookLoginUrl,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    },
+    true
+  )
+  set('state', { user: null, token: res.token, status: 'authenticated' })
+  return res
+}
+
+export { signUp, signIn, facebookLogin }
