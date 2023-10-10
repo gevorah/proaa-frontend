@@ -3,3 +3,5 @@ export type Resource = {
   descriptionName: string
   url: string
 }
+
+export type Resources = Resource[]
