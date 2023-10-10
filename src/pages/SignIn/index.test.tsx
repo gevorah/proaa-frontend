@@ -19,6 +19,7 @@ describe('Sign In Page', () => {
   it('should render the sign-in page', async () => {
     const component = render(<SignIn />)
 
+    expect(component.getByText('Log in with Facebook')).toBeTruthy()
     expect(component.getByText('Sign in')).toBeTruthy()
     expect(component.getByPlaceholderText('Email')).toBeTruthy()
     expect(component.getByPlaceholderText('Password')).toBeTruthy()
