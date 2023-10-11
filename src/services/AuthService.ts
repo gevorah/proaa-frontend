@@ -1,5 +1,6 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import type { AuthState, User } from '@/models/User'
+import type { AuthState, Credentials } from '@/models/Auth'
+import type { User } from '@/models/User'
 import { SignInSchema } from '@/pages/SignIn'
 import type { SignUpSchema } from '@/pages/SignUp'
 import fetcher from '@/utils/fetcher'
@@ -19,7 +20,7 @@ const signUp = async (user: SignUpSchema) => {
 
 const signIn = async (credentials: SignInSchema) => {
   const { set } = useLocalStorage<AuthState>('auth')
-  const res = await fetcher<{ token: string }>(
+  const res = await fetcher<Credentials>(
     signInUrl,
     {
       method: 'POST',
@@ -33,7 +34,7 @@ const signIn = async (credentials: SignInSchema) => {
 
 const facebookLogin = async (token: string) => {
   const { set } = useLocalStorage<AuthState>('auth')
-  const res = await fetcher<{ token: string }>(
+  const res = await fetcher<Credentials>(
     facebookLoginUrl,
     {
       method: 'POST',
