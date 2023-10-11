@@ -17,6 +17,14 @@ export const topics = [
   }
 ]
 
+export const resources = [
+  {
+    id: 1,
+    descriptionName: 'Object and Class',
+    url: ''
+  }
+]
+
 const mockFetch = async (
   input: URL | RequestInfo,
   _init?: RequestInit | undefined
@@ -35,7 +43,12 @@ const mockFetch = async (
         status: 200,
         json: async () => topics
       } as Response
-
+    case url + '/resources':
+      return {
+        ok: true,
+        status: 200,
+        json: async () => resources
+      } as Response
     default:
       return {} as Response
   }
