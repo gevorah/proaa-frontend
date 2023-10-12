@@ -5,6 +5,7 @@ import './index.css'
 type Column = {
   key: string
   header: string
+  link?: boolean
 }
 
 type TableProps<T> = {
@@ -42,11 +43,21 @@ function Table<T>(props: TableProps<T>) {
       <tbody>
         {data.map((row, i) => (
           <tr key={`row-${i}`}>
-            {columns.map((column, j) => (
-              <td key={`cell-${j}`}>
-                <>{row[column.key as keyof T]}</>
-              </td>
-            ))}
+            {columns.map((column, j) => {
+              const inner = row[column.key as keyof T]
+              const path = window.location.pathname
+              return (
+                <td key={`cell-${j}`}>
+                  {column.link ? (
+                    <a className="link" href={`${path}/edit/${inner}`}>
+                      <>{inner}</>
+                    </a>
+                  ) : (
+                    <>{inner}</>
+                  )}
+                </td>
+              )
+            })}
           </tr>
         ))}
       </tbody>

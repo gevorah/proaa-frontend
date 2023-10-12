@@ -10,7 +10,7 @@ function Topics() {
   const { data: topics, isLoading } = useFetch(getTopics)
 
   const headers = [
-    { key: 'id', header: 'Id' },
+    { key: 'id', header: 'Id', link: true },
     { key: 'name', header: 'Name' }
   ]
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { HttpError } from '@/models/HttpError'
 import errorHandler from '@/utils/errorHandler'
 import { logger } from '@/utils/logger'
 
@@ -8,7 +9,7 @@ type Fetcher<T, Args extends unknown[]> = (...args: Args) => Promise<T>
 type Response<T> = {
   data: T | null
   isLoading: boolean
-  error: unknown
+  error: HttpError | null
 }
 
 const useFetch = <T, Args extends unknown[]>(
@@ -17,7 +18,7 @@ const useFetch = <T, Args extends unknown[]>(
 ): Response<T> => {
   const [data, setData] = useState<T | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<unknown>(null)
+  const [error, setError] = useState<HttpError | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,8 +28,8 @@ const useFetch = <T, Args extends unknown[]>(
         logger.info('Fulfilled data fetch')
       } catch (error) {
         logger.info('Rejected data fetch')
-        errorHandler(error)
-        setError(error)
+        const httpError = errorHandler(error)
+        setError(httpError)
       } finally {
         setIsLoading(false)
       }
