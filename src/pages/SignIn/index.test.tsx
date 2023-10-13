@@ -19,6 +19,7 @@ describe('Sign In Page', () => {
   it('should render the sign-in page', async () => {
     const component = render(<SignIn />)
 
+    expect(component.getByText('Log in with Facebook')).toBeTruthy()
     expect(component.getByText('Sign in')).toBeTruthy()
     expect(component.getByPlaceholderText('Email')).toBeTruthy()
     expect(component.getByPlaceholderText('Password')).toBeTruthy()
@@ -27,7 +28,7 @@ describe('Sign In Page', () => {
   it('should show errors when the form is submitted without data', async () => {
     const component = render(<SignIn />)
 
-    const button = component.getByRole('button')
+    const button = component.getByRole('button', { name: 'Sign in' })
     await userEvent.click(button)
 
     expect(await component.findByText('Email is required')).toBeTruthy()
@@ -43,7 +44,7 @@ describe('Sign In Page', () => {
     const passwordField = component.getByPlaceholderText('Password')
     await userEvent.type(passwordField, 'password123')
 
-    const button = component.getByRole('button')
+    const button = component.getByRole('button', { name: 'Sign in' })
     await userEvent.click(button)
 
     expect(signIn).toBeCalled()

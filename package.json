@@ -22,6 +22,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.1",
     "react-router-dom": "^6.14.2",
+    "react-social-login-buttons": "^3.9.1",
+    "reactjs-social-login": "^2.6.3",
     "winston": "^3.10.0",
     "winston-transport": "^4.5.0",
     "zod": "^3.22.2"

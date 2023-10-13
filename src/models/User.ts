@@ -5,9 +5,3 @@ export type User = {
   createdAt: string
   updatedAt: string
 }
-
-export type AuthState = {
-  user: User | null
-  token: string | null
-  status: 'authenticated' | 'loading' | 'unauthenticated'
-}
