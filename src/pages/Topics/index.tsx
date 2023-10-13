@@ -4,8 +4,6 @@ import { useFetch } from '@/hooks/useFetch'
 import { newTopicPath } from '@/routes/paths'
 import { getTopics } from '@/services/TopicService'
 
-import './index.css'
-
 function Topics() {
   const { data: topics, isLoading } = useFetch(getTopics)
 
