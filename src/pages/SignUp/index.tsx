@@ -10,6 +10,7 @@ import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
 import TextField from '@/components/ui/form/textfield'
+import Separator from '@/components/ui/separator'
 import { HttpError } from '@/models/HttpError'
 import { signInPath, topicsPath } from '@/routes/paths'
 import { facebookLogin, signUp } from '@/services/AuthService'
@@ -49,28 +50,6 @@ function SignUp() {
   return (
     <AuthTemplate>
       {error && <Alert variant="error" description={error.message} />}
-      <LoginSocialFacebook
-        isOnlyGetToken
-        appId={import.meta.env.VITE_FB_APP_ID || ''}
-        onResolve={({ data }: IResolveParams) => {
-          facebookLogin(data.accessToken)
-            .then(() => {
-              setError(null)
-              navigate(topicsPath)
-            })
-            .catch(e => setError(e))
-        }}
-        onReject={() => {
-          setError(
-            new HttpError(
-              401,
-              'An unexpected error ocurred. Please try logging in again.'
-            )
-          )
-        }}
-      >
-        <FacebookLoginButton style={{ margin: 0, width: '100%' }} />
-      </LoginSocialFacebook>
       <h1>Sign up with your email address</h1>
       <form onSubmit={e => e.preventDefault()}>
         <FormTextField
@@ -99,6 +78,29 @@ function SignUp() {
         <Button disabled={isSubmitting} onClick={onSubmit}>
           Sign up
         </Button>
+        <Separator text="or" />
+        <LoginSocialFacebook
+          isOnlyGetToken
+          appId={import.meta.env.VITE_FB_APP_ID || ''}
+          onResolve={({ data }: IResolveParams) => {
+            facebookLogin(data.accessToken)
+              .then(() => {
+                setError(null)
+                navigate(topicsPath)
+              })
+              .catch(e => setError(e))
+          }}
+          onReject={() => {
+            setError(
+              new HttpError(
+                401,
+                'An unexpected error ocurred. Please try logging in again.'
+              )
+            )
+          }}
+        >
+          <FacebookLoginButton style={{ margin: 0, width: '100%' }} />
+        </LoginSocialFacebook>
         <span>
           Already have an account?&nbsp;
           <a href="/signin" className="link">
