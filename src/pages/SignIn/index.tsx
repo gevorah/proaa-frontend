@@ -2,14 +2,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { FacebookLoginButton } from 'react-social-login-buttons'
+import { IResolveParams, LoginSocialFacebook } from 'reactjs-social-login'
 import { z } from 'zod'
 
 import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
 import TextField from '@/components/ui/form/textfield'
+import Separator from '@/components/ui/separator'
 import { HttpError } from '@/models/HttpError'
-import { signIn } from '@/services/AuthService'
+import { topicsPath } from '@/routes/paths'
+import { facebookLogin, signIn } from '@/services/AuthService'
 
 const schema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
@@ -34,7 +38,7 @@ function SignIn() {
     signIn(data)
       .then(() => {
         setError(null)
-        navigate('/')
+        navigate(topicsPath)
       })
       .catch(e => setError(e))
   })
@@ -62,6 +66,29 @@ function SignIn() {
         <Button disabled={isSubmitting} onClick={onSubmit}>
           Sign in
         </Button>
+        <Separator text="or" />
+        <LoginSocialFacebook
+          isOnlyGetToken
+          appId={import.meta.env.VITE_FB_APP_ID || ''}
+          onResolve={({ data }: IResolveParams) => {
+            facebookLogin(data.accessToken)
+              .then(() => {
+                setError(null)
+                navigate(topicsPath)
+              })
+              .catch(e => setError(e))
+          }}
+          onReject={() => {
+            setError(
+              new HttpError(
+                401,
+                'An unexpected error ocurred. Please try logging in again.'
+              )
+            )
+          }}
+        >
+          <FacebookLoginButton style={{ margin: 0, width: '100%' }} />
+        </LoginSocialFacebook>
         <span>
           Don't have an account?&nbsp;
           <a href="/signup" className="link">

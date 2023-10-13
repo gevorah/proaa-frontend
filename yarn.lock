@@ -5282,6 +5282,8 @@ __metadata:
     react-dom: ^18.2.0
     react-hook-form: ^7.46.1
     react-router-dom: ^6.14.2
+    react-social-login-buttons: ^3.9.1
+    reactjs-social-login: ^2.6.3
     rollup-plugin-polyfill-node: ^0.12.0
     setimmediate: ^1.0.5
     tailwindcss: ^3.3.3
@@ -5417,12 +5419,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-social-login-buttons@npm:^3.9.1":
+  version: 3.9.1
+  resolution: "react-social-login-buttons@npm:3.9.1"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.x || ^18.x
+  checksum: 6d0f199cd916b0ebda8057f150fa8441753729132ad61ead111b31415b09f2d8134f6feda61244ecfa413448c0ce3748fb9611d6dbe96fa2e8c60461e18c3ac2
+  languageName: node
+  linkType: hard
+
 "react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
     loose-envify: ^1.1.0
   checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
+  languageName: node
+  linkType: hard
+
+"reactjs-social-login@npm:^2.6.3":
+  version: 2.6.3
+  resolution: "reactjs-social-login@npm:2.6.3"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: ef09f7c4e01a4a264bdf0721f108049fe459e1645c3341cef776a4ad4b698d8ad9424f27f420034d60db4895c39a085c6d4ab72d74c8193eb4f11c0b3f29cae4
   languageName: node
   linkType: hard
 
