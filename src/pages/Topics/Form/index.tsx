@@ -13,14 +13,16 @@ type TopicPageProps = {
 function TopicPage(props: TopicPageProps) {
   const { mode } = props
 
-  if (mode == 'create') {
+  if (mode === 'create') {
     return <TopicForm title="Create Topic" service={createTopic} />
   }
 
   const { id } = useParams()
   const { data: topic, error } = useFetch(getTopic, Number(id))
 
-  if (error) return <Error error={error} redirect={topicsPath} page="Topics" />
+  if (error) {
+    return <Error title="Topic Not Found" redirect={topicsPath} page="Topics" />
+  }
 
   return <TopicForm title="Edit Topic" service={editTopic} topic={topic} />
 }
