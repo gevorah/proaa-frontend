@@ -1,9 +1,14 @@
 export type Topic = {
+  id: number
+  name: string
+}
+
+export type TopicDto = {
   id?: number
   name: string
 }
 
-export type Topics = Required<Topic>[]
+export type Topics = Topic[]
 
 export type TopicTop = {
   id: number

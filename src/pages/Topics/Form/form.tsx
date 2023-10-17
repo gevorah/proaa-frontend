@@ -6,7 +6,7 @@ import z from 'zod'
 import PrivateTemplate from '@/components/layouts/PrivateTemplate'
 import Button from '@/components/ui/button'
 import TextField from '@/components/ui/form/textfield'
-import { Topic } from '@/models/Topic'
+import { Topic, TopicDto } from '@/models/Topic'
 import { topicsPath } from '@/routes/paths'
 
 const schema = z.object({
@@ -19,8 +19,8 @@ const FormTextField = TextField<TopicSchema>
 
 type TopicFormProps = {
   title: string
-  service: (topic: Topic) => Promise<Topic>
-  topic?: Topic | null
+  service: (topic: TopicDto) => Promise<Topic>
+  topic?: Topic
 }
 
 function TopicForm(props: TopicFormProps) {

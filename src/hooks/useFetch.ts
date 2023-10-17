@@ -7,18 +7,18 @@ import { logger } from '@/utils/logger'
 type Fetcher<T, Args extends unknown[]> = (...args: Args) => Promise<T>
 
 type Response<T> = {
-  data: T | null
+  data?: T
   isLoading: boolean
-  error: HttpError | null
+  error?: HttpError
 }
 
 const useFetch = <T, Args extends unknown[]>(
   fetcher: Fetcher<T, Args>,
   ...args: Args
 ): Response<T> => {
-  const [data, setData] = useState<T | null>(null)
+  const [data, setData] = useState<T | undefined>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<HttpError | null>(null)
+  const [error, setError] = useState<HttpError | undefined>(undefined)
 
   useEffect(() => {
     const fetchData = async () => {

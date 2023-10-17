@@ -8,7 +8,7 @@ import Button from '@/components/ui/button'
 import Select from '@/components/ui/form/select'
 import TextField from '@/components/ui/form/textfield'
 import { useFetch } from '@/hooks/useFetch'
-import { Resource } from '@/models/Resource'
+import { Resource, ResourceDto } from '@/models/Resource'
 import { resourcesPath } from '@/routes/paths'
 import { getTopics } from '@/services/TopicService'
 
@@ -27,7 +27,7 @@ const FormSelect = Select<ResourceSchema>
 
 type ResourceFormProps = {
   title: string
-  service: (topic: Resource) => Promise<Resource>
+  service: (resource: ResourceDto) => Promise<Resource>
 }
 
 function TopicForm(props: ResourceFormProps) {
@@ -53,7 +53,7 @@ function TopicForm(props: ResourceFormProps) {
       })
     }
 
-    service({ ...data, topic }).then(() => {
+    service({ ...data, topicId: data.topic }).then(() => {
       navigate(resourcesPath)
     })
   })
