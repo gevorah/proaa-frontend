@@ -3,7 +3,7 @@ export type Topic = {
   name: string
 }
 
-export type Topics = Topic[]
+export type Topics = Required<Topic>[]
 
 export type TopicTop = {
   id: number

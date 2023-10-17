@@ -1,23 +1,11 @@
-import type {
-  FieldError,
-  FieldValues,
-  Path,
-  RegisterOptions,
-  UseFormRegister
-} from 'react-hook-form'
+import type { FieldValues } from 'react-hook-form'
 
+import { FormFieldProps } from '@/components/ui/form/types'
 import TextField from '@/components/ui/textfield'
 import type { TextFieldProps } from '@/components/ui/textfield'
 
-type FormInputProps<TFormValues extends FieldValues> = {
-  name: Path<TFormValues>
-  rules?: RegisterOptions
-  register: UseFormRegister<TFormValues>
-  error?: FieldError
-} & Omit<TextFieldProps, 'name'>
-
 function FormTextField<TFormValues extends FieldValues>(
-  props: FormInputProps<TFormValues>
+  props: FormFieldProps<TFormValues, TextFieldProps>
 ) {
   const { name, rules, register, error, className, ...rest } = props
 

@@ -1,7 +1,10 @@
+import { Topic } from './Topic'
+
 export type Resource = {
-  id: number
+  id?: number
   descriptionName: string
   url: string
+  topic: Required<Topic>
 }
 
-export type Resources = Resource[]
+export type Resources = Required<Resource>[]
