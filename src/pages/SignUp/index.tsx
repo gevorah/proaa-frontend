@@ -9,7 +9,7 @@ import { z } from 'zod'
 import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
-import TextField from '@/components/ui/form/textfield'
+import FormField from '@/components/ui/form/FormField'
 import Separator from '@/components/ui/separator'
 import { HttpError } from '@/models/HttpError'
 import { signInPath, topicsPath } from '@/routes/paths'
@@ -25,8 +25,6 @@ const schema = z.object({
 })
 
 type SignUpSchema = z.infer<typeof schema>
-
-const FormTextField = TextField<SignUpSchema>
 
 function SignUp() {
   const navigate = useNavigate()
@@ -52,7 +50,8 @@ function SignUp() {
       {error && <Alert variant="error" description={error.message} />}
       <h1>Sign up with your email address</h1>
       <form onSubmit={e => e.preventDefault()}>
-        <FormTextField
+        <FormField
+          as="textfield"
           name="name"
           type="text"
           placeholder="Name"
@@ -60,7 +59,8 @@ function SignUp() {
           register={register}
           error={errors.name}
         />
-        <FormTextField
+        <FormField
+          as="textfield"
           name="email"
           type="email"
           placeholder="Email"
@@ -68,7 +68,8 @@ function SignUp() {
           register={register}
           error={errors.email}
         />
-        <FormTextField
+        <FormField
+          as="textfield"
           name="password"
           type="password"
           placeholder="Password"

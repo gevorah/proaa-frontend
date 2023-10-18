@@ -5,8 +5,7 @@ import z from 'zod'
 
 import PrivateTemplate from '@/components/layouts/PrivateTemplate'
 import Button from '@/components/ui/button'
-import Select from '@/components/ui/form/select'
-import TextField from '@/components/ui/form/textfield'
+import FormField from '@/components/ui/form/FormField'
 import { useFetch } from '@/hooks/useFetch'
 import { Resource, ResourceDto } from '@/models/Resource'
 import { resourcesPath } from '@/routes/paths'
@@ -21,9 +20,6 @@ const schema = z.object({
 })
 
 type ResourceSchema = z.infer<typeof schema>
-
-const FormTextField = TextField<ResourceSchema>
-const FormSelect = Select<ResourceSchema>
 
 type ResourceFormProps = {
   title: string
@@ -64,7 +60,8 @@ function TopicForm(props: ResourceFormProps) {
         <div>
           <h1 className="form-title">{title}</h1>
           <form className="form" onSubmit={e => e.preventDefault()}>
-            <FormTextField
+            <FormField
+              as="textfield"
               name="descriptionName"
               type="text"
               placeholder="Description"
@@ -72,7 +69,8 @@ function TopicForm(props: ResourceFormProps) {
               register={register}
               error={errors.descriptionName}
             />
-            <FormTextField
+            <FormField
+              as="textfield"
               name="url"
               type="text"
               placeholder="Url"
@@ -80,7 +78,8 @@ function TopicForm(props: ResourceFormProps) {
               register={register}
               error={errors.url}
             />
-            <FormSelect
+            <FormField
+              as="select"
               name="topic"
               placeholder="Select a Topic"
               options={topics?.map(topic => ({

@@ -9,7 +9,7 @@ import { z } from 'zod'
 import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
-import TextField from '@/components/ui/form/textfield'
+import FormField from '@/components/ui/form/FormField'
 import Separator from '@/components/ui/separator'
 import { HttpError } from '@/models/HttpError'
 import { topicsPath } from '@/routes/paths'
@@ -21,8 +21,6 @@ const schema = z.object({
 })
 
 type SignInSchema = z.infer<typeof schema>
-
-const FormTextField = TextField<SignInSchema>
 
 function SignIn() {
   const navigate = useNavigate()
@@ -48,7 +46,8 @@ function SignIn() {
       {error && <Alert variant="error" description={error.message} />}
       <h1>Log in with your email address</h1>
       <form className="form" onSubmit={e => e.preventDefault()}>
-        <FormTextField
+        <FormField
+          as="textfield"
           name="email"
           type="email"
           placeholder="Email"
@@ -56,7 +55,8 @@ function SignIn() {
           register={register}
           error={errors.email}
         />
-        <FormTextField
+        <FormField
+          as="textfield"
           name="password"
           type="password"
           placeholder="Password"
