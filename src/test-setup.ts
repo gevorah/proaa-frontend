@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { vi, vitest } from 'vitest'
+import { vi } from 'vitest'
 
 export const topTen = [
   {
@@ -10,12 +10,12 @@ export const topTen = [
   }
 ]
 
-export const topics = [
-  {
-    id: 1,
-    name: 'Object Oriented Programming'
-  }
-]
+export const topic = {
+  id: 1,
+  name: 'Object Oriented Programming'
+}
+
+export const topics = [topic]
 
 export const resources = [
   {
@@ -43,6 +43,12 @@ const mockFetch = async (
         status: 200,
         json: async () => topics
       } as Response
+    case url + '/topics/1':
+      return {
+        ok: true,
+        status: 200,
+        json: async () => topic
+      } as Response
     case url + '/resources':
       return {
         ok: true,
@@ -54,8 +60,8 @@ const mockFetch = async (
   }
 }
 
-vitest.mock('react-router-dom', () => ({
-  useNavigate: vitest.fn()
+vi.mock('react-router-dom', () => ({
+  useNavigate: vi.fn()
 }))
 
 beforeEach(() => {

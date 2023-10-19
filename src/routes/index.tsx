@@ -6,9 +6,10 @@ import Resources from '@/pages/Resources'
 import SignIn from '@/pages/SignIn'
 import SignUp from '@/pages/SignUp'
 import Topics from '@/pages/Topics'
-import NewTopic from '@/pages/Topics/New'
+import TopicPage from '@/pages/Topics/Form'
 
 import {
+  editTopicPath,
   homePath,
   newTopicPath,
   resourcesPath,
@@ -24,8 +25,11 @@ const router = createBrowserRouter([
       { path: homePath, element: <Home /> },
       { path: signUpPath, element: <SignUp /> },
       { path: signInPath, element: <SignIn /> },
+
       { path: topicsPath, element: <Topics /> },
-      { path: newTopicPath, element: <NewTopic /> },
+      { path: newTopicPath, element: <TopicPage mode="create" /> },
+      { path: editTopicPath, element: <TopicPage mode="edit" /> },
+
       { path: resourcesPath, element: <Resources /> }
     ]
   }

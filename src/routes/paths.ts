@@ -6,6 +6,7 @@ export const logOutPath = '/logout'
 
 export const topicsPath = '/topics'
 export const newTopicPath = '/topics/add'
+export const editTopicPath = '/topics/edit/:id'
 
 export const resourcesPath = '/resources'
 export const newResourcePath = '/resources/add'
