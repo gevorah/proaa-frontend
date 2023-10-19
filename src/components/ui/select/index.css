@@ -15,7 +15,6 @@
     grid-area: select;
     height: 0.75rem;
     width: 1.25rem;
-    /* clip-path: polygon(10% 0, 0 10%, 50% 100%, 100% 10%, 90% 0, 50% 70%); */
     clip-path: polygon(15% 0, 0 15%, 50% 100%, 100% 15%, 85% 0, 50% 60%);
     margin-left: 1rem;
     margin-right: 1rem;
