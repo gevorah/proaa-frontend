@@ -2,6 +2,8 @@ import { render } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { vi } from 'vitest'
 
+import { topic } from '@/test-setup'
+
 import ResourcePage from '../Form'
 
 const router = vi.hoisted(() => ({
@@ -32,6 +34,26 @@ describe('ResourcePage', () => {
       expect(await component.findByText('Description is required')).toBeTruthy()
       expect(await component.findByText('Url is required')).toBeTruthy()
       expect(await component.findByText('Topic is required')).toBeTruthy()
+    })
+
+    it('should show error when the form is submitted with invalid topic', async () => {
+      const component = render(<ResourcePage mode="create" />)
+
+      const descriptionField = component.getByPlaceholderText('Description')
+      await userEvent.type(descriptionField, 'Testing')
+
+      const urlField = component.getByPlaceholderText('Url')
+      await userEvent.type(urlField, 'http://test.com')
+
+      const topicField = component.getByRole('combobox')
+      const topicOption = component.getByRole('option', { name: topic.name })
+      topicOption.setAttribute('value', '10')
+      await userEvent.selectOptions(topicField, topicOption)
+
+      const button = component.getByRole('button')
+      await userEvent.click(button)
+
+      expect(await component.findByText('Topic is not valid')).toBeTruthy()
     })
   })
 })
