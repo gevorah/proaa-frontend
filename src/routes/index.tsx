@@ -10,6 +10,7 @@ import Topics from '@/pages/Topics'
 import TopicPage from '@/pages/Topics/Form'
 
 import {
+  editResourcePath,
   editTopicPath,
   homePath,
   newResourcePath,
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     errorElement: <Maintenance />,
     children: [
       { path: homePath, element: <Home /> },
+
       { path: signUpPath, element: <SignUp /> },
       { path: signInPath, element: <SignIn /> },
 
@@ -33,7 +35,8 @@ const router = createBrowserRouter([
       { path: editTopicPath, element: <TopicPage mode="edit" /> },
 
       { path: resourcesPath, element: <Resources /> },
-      { path: newResourcePath, element: <ResourcePage mode="create" /> }
+      { path: newResourcePath, element: <ResourcePage mode="create" /> },
+      { path: editResourcePath, element: <ResourcePage mode="edit" /> }
     ]
   }
 ])
