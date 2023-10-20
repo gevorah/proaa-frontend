@@ -37,7 +37,7 @@ describe('Resource Page', () => {
       expect(await component.findByText('Topic is required')).toBeTruthy()
     })
 
-    it('should show error when the form is submitted with invalid resource', async () => {
+    it('should show error when the form is submitted with invalid topic', async () => {
       const component = render(<ResourcePage mode="create" />)
 
       const descriptionField = component.getByPlaceholderText('Description')
@@ -46,10 +46,10 @@ describe('Resource Page', () => {
       const urlField = component.getByPlaceholderText('Url')
       await userEvent.type(urlField, 'http://test.com')
 
-      const resourceField = component.getByRole('combobox')
-      const resourceOption = component.getByRole('option', { name: topic.name })
-      resourceOption.setAttribute('value', '10')
-      await userEvent.selectOptions(resourceField, resourceOption)
+      const topicField = component.getByRole('combobox')
+      const topicOption = component.getByRole('option', { name: topic.name })
+      topicOption.setAttribute('value', '10')
+      await userEvent.selectOptions(topicField, topicOption)
 
       const button = component.getByRole('button')
       await userEvent.click(button)
