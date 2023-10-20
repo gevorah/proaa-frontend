@@ -1,4 +1,4 @@
-import { Topic, Topics, TopicsTop } from '@/models/Topic'
+import { Topic, TopicDto, Topics, TopicsTop } from '@/models/Topic'
 import { authHeader } from '@/utils/authHeader'
 import fetcher from '@/utils/fetcher'
 import { topTenUrl, topicsUrl } from '@/utils/resources'
@@ -20,7 +20,7 @@ const getTopic = async (id: number) => {
   return topic
 }
 
-const createTopic = async (t: Omit<Topic, 'id'>) => {
+const createTopic = async (t: Omit<TopicDto, 'id'>) => {
   const headers = authHeader()
   const topic = await fetcher<Topic>(topicsUrl, {
     method: 'POST',
@@ -30,7 +30,7 @@ const createTopic = async (t: Omit<Topic, 'id'>) => {
   return topic
 }
 
-const editTopic = async (t: Topic) => {
+const editTopic = async (t: TopicDto) => {
   const headers = authHeader()
   const topic = await fetcher<Topic>(`${topicsUrl}/${t.id}`, {
     method: 'PATCH',

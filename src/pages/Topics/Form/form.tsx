@@ -5,8 +5,8 @@ import z from 'zod'
 
 import PrivateTemplate from '@/components/layouts/PrivateTemplate'
 import Button from '@/components/ui/button'
-import TextField from '@/components/ui/form/textfield'
-import { Topic } from '@/models/Topic'
+import Field from '@/components/ui/form/FormField'
+import { Topic, TopicDto } from '@/models/Topic'
 import { topicsPath } from '@/routes/paths'
 
 const schema = z.object({
@@ -15,12 +15,12 @@ const schema = z.object({
 
 type TopicSchema = z.infer<typeof schema>
 
-const FormTextField = TextField<TopicSchema>
+const FormField = Field<TopicSchema>
 
 type TopicFormProps = {
   title: string
-  service: (topic: Topic) => Promise<Topic>
-  topic?: Topic | null
+  service: (topic: TopicDto) => Promise<Topic>
+  topic?: Topic
 }
 
 function TopicForm(props: TopicFormProps) {
@@ -48,7 +48,7 @@ function TopicForm(props: TopicFormProps) {
         <div>
           <h1 className="form-title">{title}</h1>
           <form className="form" onSubmit={e => e.preventDefault()}>
-            <FormTextField
+            <FormField
               name="name"
               type="text"
               placeholder="Topic Name"
