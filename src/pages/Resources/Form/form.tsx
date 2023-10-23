@@ -69,6 +69,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="textfield"
               name="descriptionName"
+              label="Description"
               type="text"
               placeholder="Description"
               autocomplete="off"
@@ -78,6 +79,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="textfield"
               name="url"
+              label="Url"
               type="text"
               placeholder="Url"
               autocomplete="off"
@@ -87,6 +89,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="select"
               name="topic"
+              label="Topic"
               placeholder="Select a Topic"
               options={topics?.map(topic => ({
                 label: topic.name,
