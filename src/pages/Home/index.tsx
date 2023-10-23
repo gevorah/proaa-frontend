@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 
-import PublicTemplate from '@/components/layouts/PublicTemplate'
 import TopTenTable from '@/components/ui/table'
 import { useFetch } from '@/hooks/useFetch'
 import { top10Topics } from '@/services/TopicService'
@@ -21,17 +20,15 @@ function Home() {
   }, [])
 
   return (
-    <PublicTemplate>
-      <section>
-        <h1 className="home-title">Top ten topics</h1>
-        <TopTenTable
-          columns={headers}
-          data={topics || []}
-          isLoading={isLoading}
-          emptyMessage="No Topics"
-        />
-      </section>
-    </PublicTemplate>
+    <section>
+      <h1 className="home-title">Top ten topics</h1>
+      <TopTenTable
+        columns={headers}
+        data={topics || []}
+        isLoading={isLoading}
+        emptyMessage="No Topics"
+      />
+    </section>
   )
 }
 

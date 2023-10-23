@@ -1,12 +1,13 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { AuthState } from '@/models/User'
+import { AuthState } from '@/models/Auth'
 
 const authHeader = () => {
-  const { get } = useLocalStorage<AuthState>('auth')
-  const authState = get('state')
-  if (!authState) return undefined
+  const { value: auth } = useLocalStorage<AuthState>('auth')
+
+  if (!auth || !auth.token) return undefined
+
   return {
-    Authorization: `Bearer ${authState.token}`
+    Authorization: `Bearer ${auth.token}`
   }
 }
 

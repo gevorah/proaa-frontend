@@ -1,12 +1,11 @@
-export const useLocalStorage = <T>(prefix: string) => {
-  return {
-    get: (key: string): T | null => {
-      return JSON.parse(
-        window.localStorage.getItem(`${prefix}-${key}`) || 'null'
-      )
-    },
-    set: (key: string, value: T) => {
-      window.localStorage.setItem(`${prefix}-${key}`, JSON.stringify(value))
-    }
+export const useLocalStorage = <T>(key: string) => {
+  const value = JSON.parse(
+    window.localStorage.getItem(key) || 'null'
+  ) as T | null
+
+  const set = (value: T) => {
+    window.localStorage.setItem(key, JSON.stringify(value))
   }
+
+  return { value, set }
 }

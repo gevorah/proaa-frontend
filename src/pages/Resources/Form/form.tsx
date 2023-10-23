@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import z from 'zod'
 
-import PrivateTemplate from '@/components/layouts/PrivateTemplate'
+import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Button from '@/components/ui/button'
 import FormField from '@/components/ui/form/FormField'
 import { useFetch } from '@/hooks/useFetch'
@@ -61,53 +61,51 @@ function TopicForm(props: ResourceFormProps) {
   })
 
   return (
-    <PrivateTemplate>
-      <section>
-        <div>
-          <h1 className="form-title">{title}</h1>
-          <form className="form" onSubmit={e => e.preventDefault()}>
-            <FormField
-              as="textfield"
-              name="descriptionName"
-              label="Description"
-              type="text"
-              placeholder="Description"
-              autocomplete="off"
-              register={register}
-              error={errors.descriptionName}
-            />
-            <FormField
-              as="textfield"
-              name="url"
-              label="Url"
-              type="text"
-              placeholder="Url"
-              autocomplete="off"
-              register={register}
-              error={errors.url}
-            />
-            <FormField
-              as="select"
-              name="topic"
-              label="Topic"
-              placeholder="Select a Topic"
-              options={topics?.map(topic => ({
-                label: topic.name,
-                value: topic.id
-              }))}
-              register={register}
-              error={errors.topic}
-            />
-            <Button disabled={isSubmitting} onClick={onSubmit}>
-              Save
-            </Button>
-            <a href={resourcesPath} className="link">
-              Back to list
-            </a>
-          </form>
-        </div>
-      </section>
-    </PrivateTemplate>
+    <section>
+      <div>
+        <h1 className="form-title">{title}</h1>
+        <form className="form" onSubmit={e => e.preventDefault()}>
+          <FormField
+            as="textfield"
+            name="descriptionName"
+            label="Description"
+            type="text"
+            placeholder="Description"
+            autocomplete="off"
+            register={register}
+            error={errors.descriptionName}
+          />
+          <FormField
+            as="textfield"
+            name="url"
+            label="Url"
+            type="text"
+            placeholder="Url"
+            autocomplete="off"
+            register={register}
+            error={errors.url}
+          />
+          <FormField
+            as="select"
+            name="topic"
+            label="Topic"
+            placeholder="Select a Topic"
+            options={topics?.map(topic => ({
+              label: topic.name,
+              value: topic.id
+            }))}
+            register={register}
+            error={errors.topic}
+          />
+          <Button disabled={isSubmitting} onClick={onSubmit}>
+            Save
+          </Button>
+          <a href={resourcesPath} className="link">
+            Back to list
+          </a>
+        </form>
+      </div>
+    </section>
   )
 }
 

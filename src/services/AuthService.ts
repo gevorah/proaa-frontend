@@ -28,8 +28,13 @@ const signIn = async (credentials: SignInSchema) => {
     },
     true
   )
-  set('state', { user: null, token: res.token, status: 'authenticated' })
+  set({ token: res.token, status: 'authenticated' })
   return res
+}
+
+const signOut = () => {
+  const { set } = useLocalStorage<AuthState>('auth')
+  set({ status: 'unauthenticated' })
 }
 
 const facebookLogin = async (token: string) => {
@@ -44,8 +49,8 @@ const facebookLogin = async (token: string) => {
     },
     true
   )
-  set('state', { user: null, token: res.token, status: 'authenticated' })
+  set({ token: res.token, status: 'authenticated' })
   return res
 }
 
-export { signUp, signIn, facebookLogin }
+export { signUp, signIn, signOut, facebookLogin }

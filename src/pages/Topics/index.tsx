@@ -1,4 +1,4 @@
-import PrivateTemplate from '@/components/layouts/PrivateTemplate'
+import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Table from '@/components/ui/table'
 import { useFetch } from '@/hooks/useFetch'
 import { newTopicPath } from '@/routes/paths'
@@ -13,20 +13,18 @@ function Topics() {
   ]
 
   return (
-    <PrivateTemplate>
-      <section>
-        <h1 className="title">My Topics</h1>
-        <Table
-          columns={headers}
-          data={topics || []}
-          isLoading={isLoading}
-          emptyMessage="No Topics"
-        />
-        <a href={newTopicPath} className="btn">
-          New Topic
-        </a>
-      </section>
-    </PrivateTemplate>
+    <section>
+      <h1 className="title">My Topics</h1>
+      <Table
+        columns={headers}
+        data={topics || []}
+        isLoading={isLoading}
+        emptyMessage="No Topics"
+      />
+      <a href={newTopicPath} className="btn">
+        New Topic
+      </a>
+    </section>
   )
 }
 

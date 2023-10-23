@@ -6,7 +6,6 @@ import { FacebookLoginButton } from 'react-social-login-buttons'
 import { IResolveParams, LoginSocialFacebook } from 'reactjs-social-login'
 import { z } from 'zod'
 
-import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
 import FormField from '@/components/ui/form/FormField'
@@ -42,7 +41,7 @@ function SignIn() {
   })
 
   return (
-    <AuthTemplate>
+    <>
       {error && <Alert variant="error" description={error.message} />}
       <h1>Log in with your email address</h1>
       <form className="form" onSubmit={e => e.preventDefault()}>
@@ -98,7 +97,7 @@ function SignIn() {
           </a>
         </span>
       </form>
-    </AuthTemplate>
+    </>
   )
 }
 

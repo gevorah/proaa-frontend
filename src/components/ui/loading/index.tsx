@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
+
 import './index.css'
-import { ReactElement } from 'react'
 
 type LoadingProps = {
   className?: string
-  children?: ReactElement
+  children?: ReactNode
 }
 
 function Loading(props: LoadingProps) {

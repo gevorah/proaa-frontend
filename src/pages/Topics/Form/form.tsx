@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import z from 'zod'
 
-import PrivateTemplate from '@/components/layouts/PrivateTemplate'
+import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Button from '@/components/ui/button'
 import Field from '@/components/ui/form/FormField'
 import { Topic, TopicDto } from '@/models/Topic'
@@ -43,30 +43,28 @@ function TopicForm(props: TopicFormProps) {
   })
 
   return (
-    <PrivateTemplate>
-      <section>
-        <div>
-          <h1 className="form-title">{title}</h1>
-          <form className="form" onSubmit={e => e.preventDefault()}>
-            <FormField
-              name="name"
-              label="Topic Name"
-              type="text"
-              placeholder="Topic Name"
-              autocomplete="off"
-              register={register}
-              error={errors.name}
-            />
-            <Button disabled={isSubmitting} onClick={onSubmit}>
-              Save
-            </Button>
-            <a href={topicsPath} className="link">
-              Back to list
-            </a>
-          </form>
-        </div>
-      </section>
-    </PrivateTemplate>
+    <section>
+      <div>
+        <h1 className="form-title">{title}</h1>
+        <form className="form" onSubmit={e => e.preventDefault()}>
+          <FormField
+            name="name"
+            label="Topic Name"
+            type="text"
+            placeholder="Topic Name"
+            autocomplete="off"
+            register={register}
+            error={errors.name}
+          />
+          <Button disabled={isSubmitting} onClick={onSubmit}>
+            Save
+          </Button>
+          <a href={topicsPath} className="link">
+            Back to list
+          </a>
+        </form>
+      </div>
+    </section>
   )
 }
 
