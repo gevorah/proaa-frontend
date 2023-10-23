@@ -8,9 +8,11 @@ import type {
 
 import type { FieldProps } from './Field'
 import Field from './Field'
+import './index.css'
 
 type FormFieldProps<TFormValues extends FieldValues> = {
   name: Path<TFormValues>
+  label?: string
   register: UseFormRegister<TFormValues>
   rules?: RegisterOptions
   error?: FieldError
@@ -19,12 +21,13 @@ type FormFieldProps<TFormValues extends FieldValues> = {
 function FormField<TFormValues extends FieldValues>(
   props: FormFieldProps<TFormValues>
 ) {
-  const { name, as, register, rules, error, className, ...rest } = props
+  const { as, name, label, register, rules, error, className, ...rest } = props
 
   return (
-    <div>
+    <div className="form-field">
+      {label && <label>{label}</label>}
       <Field as={as} {...rest} {...register(name, rules)} />
-      {error && <span className="text-red-600">{error.message}</span>}
+      {error && <span className="error">{error.message}</span>}
     </div>
   )
 }

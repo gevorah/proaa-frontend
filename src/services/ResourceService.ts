@@ -9,6 +9,12 @@ const getResources = async () => {
   return resources
 }
 
+const getResource = async (id: number) => {
+  const headers = authHeader()
+  const resource = await fetcher<Resource>(`${resourcesUrl}/${id}`, { headers })
+  return resource
+}
+
 const createResource = async (r: Omit<ResourceDto, 'id'>) => {
   const headers = authHeader()
   const resource = await fetcher<Resource>(resourcesUrl, {
@@ -19,4 +25,14 @@ const createResource = async (r: Omit<ResourceDto, 'id'>) => {
   return resource
 }
 
-export { getResources, createResource }
+const editResource = async (r: ResourceDto) => {
+  const headers = authHeader()
+  const resource = await fetcher<Resource>(`${resourcesUrl}/${r.id}`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify(r)
+  })
+  return resource
+}
+
+export { getResources, getResource, createResource, editResource }

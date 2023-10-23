@@ -53,6 +53,7 @@ function SignUp() {
         <FormField
           as="textfield"
           name="name"
+          label="Name"
           type="text"
           placeholder="Name"
           autocomplete="name"
@@ -62,6 +63,7 @@ function SignUp() {
         <FormField
           as="textfield"
           name="email"
+          label="Email"
           type="email"
           placeholder="Email"
           autocomplete="email"
@@ -71,6 +73,7 @@ function SignUp() {
         <FormField
           as="textfield"
           name="password"
+          label="Password"
           type="password"
           placeholder="Password"
           register={register}

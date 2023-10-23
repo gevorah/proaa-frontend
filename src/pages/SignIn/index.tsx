@@ -49,6 +49,7 @@ function SignIn() {
         <FormField
           as="textfield"
           name="email"
+          label="Email"
           type="email"
           placeholder="Email"
           autocomplete="email"
@@ -58,6 +59,7 @@ function SignIn() {
         <FormField
           as="textfield"
           name="password"
+          label="Password"
           type="password"
           placeholder="Password"
           register={register}
