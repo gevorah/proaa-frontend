@@ -8,7 +8,7 @@ function Resources() {
   const { data: resources, isLoading } = useFetch(getResources)
 
   const headers = [
-    { key: 'id', header: 'Id' },
+    { key: 'id', header: 'Id', link: true },
     { key: 'descriptionName', header: 'Description Name' }
   ]
 

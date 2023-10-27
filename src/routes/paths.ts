@@ -10,3 +10,4 @@ export const editTopicPath = '/topics/edit/:id'
 
 export const resourcesPath = '/resources'
 export const newResourcePath = '/resources/add'
+export const editResourcePath = '/resources/edit/:id'

@@ -24,10 +24,11 @@ type ResourceSchema = z.infer<typeof schema>
 type ResourceFormProps = {
   title: string
   service: (resource: ResourceDto) => Promise<Resource>
+  resource?: Resource
 }
 
 function TopicForm(props: ResourceFormProps) {
-  const { title, service } = props
+  const { title, service, resource } = props
   const navigate = useNavigate()
   const { data: topics } = useFetch(getTopics)
 
@@ -37,7 +38,12 @@ function TopicForm(props: ResourceFormProps) {
     setError,
     formState: { errors, isSubmitting }
   } = useForm<ResourceSchema>({
-    resolver: zodResolver(schema)
+    resolver: zodResolver(schema),
+    values: {
+      descriptionName: resource?.descriptionName || '',
+      url: resource?.url || '',
+      topic: resource?.topic.id || 0
+    }
   })
 
   const onSubmit = handleSubmit(data => {
@@ -49,7 +55,7 @@ function TopicForm(props: ResourceFormProps) {
       })
     }
 
-    service({ ...data, topicId: data.topic }).then(() => {
+    service({ id: resource?.id, ...data, topicId: data.topic }).then(() => {
       navigate(resourcesPath)
     })
   })
@@ -63,6 +69,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="textfield"
               name="descriptionName"
+              label="Description"
               type="text"
               placeholder="Description"
               autocomplete="off"
@@ -72,6 +79,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="textfield"
               name="url"
+              label="Url"
               type="text"
               placeholder="Url"
               autocomplete="off"
@@ -81,6 +89,7 @@ function TopicForm(props: ResourceFormProps) {
             <FormField
               as="select"
               name="topic"
+              label="Topic"
               placeholder="Select a Topic"
               options={topics?.map(topic => ({
                 label: topic.name,

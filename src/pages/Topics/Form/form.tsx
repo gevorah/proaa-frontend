@@ -50,6 +50,7 @@ function TopicForm(props: TopicFormProps) {
           <form className="form" onSubmit={e => e.preventDefault()}>
             <FormField
               name="name"
+              label="Topic Name"
               type="text"
               placeholder="Topic Name"
               autocomplete="off"
