@@ -1,11 +1,36 @@
-export const useLocalStorage = <T>(key: string) => {
-  const value = JSON.parse(
-    window.localStorage.getItem(key) || 'null'
-  ) as T | null
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState
+} from 'react'
 
-  const set = (value: T) => {
-    window.localStorage.setItem(key, JSON.stringify(value))
+import { localStorageUtil } from '@/utils/localStorage'
+
+type SetValue<T> = Dispatch<SetStateAction<T>>
+
+export const useLocalStorage = <T>(
+  key: string,
+  initialValue: T
+): [T, SetValue<T>] => {
+  const { item, setItem } = localStorageUtil<T>(key)
+
+  const getValue = useCallback((): T => {
+    return item ?? initialValue
+  }, [initialValue, key])
+
+  const [value, setValue] = useState<T>(getValue)
+
+  const setValueExt: SetValue<T> = val => {
+    const newValue = val instanceof Function ? val(value) : val
+    setItem(newValue)
+    setValue(newValue)
   }
 
-  return { value, set }
+  useEffect(() => {
+    setValue(getValue())
+  }, [])
+
+  return [value, setValueExt]
 }

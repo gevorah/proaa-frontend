@@ -1,4 +1,3 @@
-import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Table from '@/components/ui/table'
 import { useFetch } from '@/hooks/useFetch'
 import { newResourcePath } from '@/routes/paths'

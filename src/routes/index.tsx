@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import AuthLayout from '@/components/layouts/AuthLayout'
+import Layout from '@/components/layouts/Layout'
 import PrivateLayout from '@/components/layouts/PrivateLayout'
-import PublicLayout from '@/components/layouts/PublicLayout'
 import Home from '@/pages/Home'
 import Maintenance from '@/pages/Maintenance'
 import Resources from '@/pages/Resources'
@@ -28,12 +28,10 @@ import {
 
 const router = createBrowserRouter([
   {
+    element: <Layout />,
     errorElement: <Maintenance />,
     children: [
-      {
-        element: <PublicLayout />,
-        children: [{ path: homePath, element: <Home /> }]
-      },
+      { path: homePath, element: <Home /> },
 
       {
         element: <AuthLayout />,

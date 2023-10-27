@@ -1,52 +1,32 @@
-import { ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
-import {
-  homePath,
-  resourcesPath,
-  signInPath,
-  signOutPath,
-  signUpPath,
-  topicsPath
-} from '@/routes/paths'
+import { filterNavItems } from '@/utils/navbar'
 
-type NavbarProps = { children: ReactNode }
+type NavbarProps = { isAuth: boolean }
 
-function Navbar({ children }: NavbarProps) {
+function Navbar({ isAuth }: NavbarProps) {
   return (
     <div className="nav-wrapper">
-      <nav className="nav">{children}</nav>
+      <nav className="nav">
+        <div className="nav-container">
+          <div className="nav-menu">
+            {filterNavItems('left', isAuth).map(item => (
+              <NavLink key={item.title} to={item.link}>
+                {item.title}
+              </NavLink>
+            ))}
+          </div>
+          <div className="nav-menu">
+            {filterNavItems('right', isAuth).map(item => (
+              <NavLink key={item.title} to={item.link}>
+                {item.title}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </nav>
     </div>
   )
 }
 
-function PublicNavbar() {
-  return (
-    <Navbar>
-      <div className="nav-menu">
-        <a href={homePath}>Home</a>
-      </div>
-      <div className="nav-menu">
-        <a href={signInPath}>Log In</a>
-        <a href={signUpPath}>Sign Up</a>
-      </div>
-    </Navbar>
-  )
-}
-
-function PrivateNavbar() {
-  return (
-    <Navbar>
-      <div className="nav-menu">
-        <a href={homePath}>Home</a>
-        <a href={topicsPath}>Topics</a>
-        <a href={resourcesPath}>Resources</a>
-      </div>
-      <div className="nav-menu">
-        <a href={signOutPath}>Log out</a>
-      </div>
-    </Navbar>
-  )
-}
-
 export default Navbar
-export { PublicNavbar, PrivateNavbar }

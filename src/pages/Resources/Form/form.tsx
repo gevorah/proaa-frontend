@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import z from 'zod'
 
-import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Button from '@/components/ui/button'
 import FormField from '@/components/ui/form/FormField'
 import { useFetch } from '@/hooks/useFetch'

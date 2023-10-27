@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import z from 'zod'
 
-import PrivateTemplate from '@/components/layouts/PrivateLayout'
 import Button from '@/components/ui/button'
 import Field from '@/components/ui/form/FormField'
 import { Topic, TopicDto } from '@/models/Topic'

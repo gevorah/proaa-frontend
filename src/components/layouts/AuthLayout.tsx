@@ -1,28 +1,19 @@
 import { Navigate, Outlet } from 'react-router-dom'
 
-import { useAuth } from '@/hooks/useAuth'
+import { useAuthState } from '@/contexts/AuthContext'
 import { homePath } from '@/routes/paths'
 
-import { PublicNavbar } from './Navbar'
-
 function AuthLayout() {
-  const isAuth = useAuth()
+  const authState = useAuthState()
 
-  if (isAuth) return <Navigate to={homePath} />
+  if (authState.authenticated) return <Navigate to={homePath} />
 
   return (
-    <>
-      <PublicNavbar />
-      <div>
-        <main>
-          <section>
-            <div className="auth">
-              <Outlet />
-            </div>
-          </section>
-        </main>
+    <section>
+      <div className="auth">
+        <Outlet />
       </div>
-    </>
+    </section>
   )
 }
 

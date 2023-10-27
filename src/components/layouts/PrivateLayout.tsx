@@ -1,26 +1,16 @@
 import { Navigate, Outlet } from 'react-router-dom'
 
-import { useAuth } from '@/hooks/useAuth'
+import { useAuthState } from '@/contexts/AuthContext'
 import { signInPath } from '@/routes/paths'
 
-import { PrivateNavbar } from './Navbar'
 import './index.css'
 
 function PrivateLayout() {
-  const isAuth = useAuth()
+  const authState = useAuthState()
 
-  if (!isAuth) return <Navigate to={signInPath} />
+  if (!authState.authenticated) return <Navigate to={signInPath} />
 
-  return (
-    <>
-      <PrivateNavbar />
-      <div>
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    </>
-  )
+  return <Outlet />
 }
 
 export default PrivateLayout
