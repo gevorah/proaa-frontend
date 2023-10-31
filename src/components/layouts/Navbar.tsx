@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import { filterNavItems } from '@/utils/navbar'
+import { filterNavItems } from '@/routes/navigation'
 
 type NavbarProps = { isAuth: boolean }
 
