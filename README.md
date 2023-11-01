@@ -1,4 +1,4 @@
-# PROAA-frontend
+# proaa-frontend
 
 # How to use
 **`yarn dev`**

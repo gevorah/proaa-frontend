@@ -6,11 +6,11 @@ import { FacebookLoginButton } from 'react-social-login-buttons'
 import { IResolveParams, LoginSocialFacebook } from 'reactjs-social-login'
 import { z } from 'zod'
 
-import AuthTemplate from '@/components/layouts/AuthTemplate'
 import Alert from '@/components/ui/alert'
 import Button from '@/components/ui/button'
 import FormField from '@/components/ui/form/FormField'
 import Separator from '@/components/ui/separator'
+import { useAuthDispatch } from '@/contexts/AuthContext'
 import { HttpError } from '@/models/HttpError'
 import { topicsPath } from '@/routes/paths'
 import { facebookLogin, signIn } from '@/services/AuthService'
@@ -24,6 +24,7 @@ type SignInSchema = z.infer<typeof schema>
 
 function SignIn() {
   const navigate = useNavigate()
+  const authDispatch = useAuthDispatch()
   const [error, setError] = useState<HttpError | null>(null)
 
   const {
@@ -32,17 +33,20 @@ function SignIn() {
     formState: { errors, isSubmitting }
   } = useForm<SignInSchema>({ resolver: zodResolver(schema) })
 
-  const onSubmit = handleSubmit(data => {
-    signIn(data)
-      .then(() => {
-        setError(null)
-        navigate(topicsPath)
-      })
+  const onSubmit = handleSubmit(async data => {
+    return signIn(data)
+      .then(res => onLogin(res.token))
       .catch(e => setError(e))
   })
 
+  const onLogin = (token: string) => {
+    setError(null)
+    authDispatch.login(token)
+    navigate(topicsPath)
+  }
+
   return (
-    <AuthTemplate>
+    <>
       {error && <Alert variant="error" description={error.message} />}
       <h1>Log in with your email address</h1>
       <form className="form" onSubmit={e => e.preventDefault()}>
@@ -74,10 +78,7 @@ function SignIn() {
           appId={import.meta.env.VITE_FB_APP_ID || ''}
           onResolve={({ data }: IResolveParams) => {
             facebookLogin(data.accessToken)
-              .then(() => {
-                setError(null)
-                navigate(topicsPath)
-              })
+              .then(res => onLogin(res.token))
               .catch(e => setError(e))
           }}
           onReject={() => {
@@ -98,7 +99,7 @@ function SignIn() {
           </a>
         </span>
       </form>
-    </AuthTemplate>
+    </>
   )
 }
 
